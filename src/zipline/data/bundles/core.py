@@ -372,10 +372,12 @@ def _make_bundle_core():
         except KeyError:
             raise UnknownBundle(name)
 
-        calendar = get_calendar(bundle.calendar_name)
-
         start_session = bundle.start_session
         end_session = bundle.end_session
+
+        calendar = get_calendar(
+            bundle.calendar_name, start_session=start_session, end_session=end_session
+        )
 
         if start_session is None or start_session < calendar.first_session:
             start_session = calendar.first_session

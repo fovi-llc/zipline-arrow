@@ -27,10 +27,25 @@ def wrap_with_signature(signature):
 
 @wrap_with_signature(inspect.signature(ec_get_calendar))
 def get_calendar(*args, **kwargs):
-    if args[0] in ["us_futures", "CMES", "XNYS", "NYSE"]:
-        return ec_get_calendar(*args, side="right", start=pd.Timestamp("1990-01-01"))
-    return ec_get_calendar(*args, side="right")
+    # We can't use the default ExchaneCalendar start which is 20 years before today when
+    # ingesting or loading bundles that start before then.
+    # There is the 1990-01-01 hack for four particular calendars but that doesn't work for others.
+    # So when the user has an actual starting session date we use that minus 100 weeks
+    # as a start date for the calendar in the case where the old behavior gives a too short calendar.
+    start_session = kwargs.pop("start_session", None)
+    kwargs.pop("end_session", None)
 
+    if args[0] in ["us_futures", "CMES", "XNYS", "NYSE"]:
+        calendar = ec_get_calendar(*args, side="right", start=pd.Timestamp("1990-01-01"))
+    else:
+        calendar = ec_get_calendar(*args, side="right")
+
+    if start_session:
+        min_calendar_start = start_session - pd.Timedelta(weeks=100)
+        if calendar.first_session > min_calendar_start:
+            calendar = ec_get_calendar(*args, side="right", start=min_calendar_start)
+
+    return calendar
 
 # get_calendar = compose(partial(get_calendar, side="right"), "XNYS")
 # NOTE Sessions are now timezone-naive (previously UTC).

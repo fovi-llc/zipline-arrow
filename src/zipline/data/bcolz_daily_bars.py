@@ -441,7 +441,6 @@ class BcolzDailyBarReader(CurrencyAwareSessionBarReader):
             # backwards compatibility with old formats, will remove
             return pd.DatetimeIndex(self._table.attrs["calendar"])
         else:
-            cal = get_calendar(self._table.attrs["calendar_name"])
             start_session_ns = self._table.attrs["start_session_ns"]
 
             start_session = pd.Timestamp(start_session_ns)
@@ -449,6 +448,11 @@ class BcolzDailyBarReader(CurrencyAwareSessionBarReader):
             end_session_ns = self._table.attrs["end_session_ns"]
             end_session = pd.Timestamp(end_session_ns)
 
+            cal = get_calendar(
+                self._table.attrs["calendar_name"],
+                start_session=start_session,
+                end_session=end_session,
+            )
             sessions = cal.sessions_in_range(start_session, end_session)
 
             return sessions
