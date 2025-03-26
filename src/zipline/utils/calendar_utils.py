@@ -47,6 +47,15 @@ def get_calendar(*args, **kwargs):
 
     return calendar
 
+
+def get_calendar_for_bundle(bundle):
+    return get_calendar(
+        bundle.calendar_name,
+        start_session=bundle.start_session,
+        end_session=bundle.end_session,
+    )
+
+
 # get_calendar = compose(partial(get_calendar, side="right"), "XNYS")
 # NOTE Sessions are now timezone-naive (previously UTC).
 # Schedule columns now have timezone set as UTC

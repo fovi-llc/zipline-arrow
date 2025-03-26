@@ -488,7 +488,7 @@ class BcolzDailyBarReader(CurrencyAwareSessionBarReader):
     @lazyval
     def trading_calendar(self):
         if "calendar_name" in self._table.attrs.attrs:
-            return get_calendar(self._table.attrs["calendar_name"])
+            return get_calendar(self._table.attrs["calendar_name"], start_session=self.first_trading_day)
         else:
             return None
 

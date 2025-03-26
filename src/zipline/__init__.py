@@ -18,7 +18,7 @@ import numpy as np
 
 # This is *not* a place to dump arbitrary classes/modules for convenience,
 # it is a place to expose the public interfaces.
-from zipline.utils.calendar_utils import get_calendar
+from zipline.utils.calendar_utils import get_calendar, get_calendar_for_bundle
 
 from . import data
 from . import finance
@@ -90,6 +90,7 @@ __all__ = [
     "data",
     "finance",
     "get_calendar",
+    "get_calendar_for_bundle",
     "gens",
     "run_algorithm",
     "utils",
