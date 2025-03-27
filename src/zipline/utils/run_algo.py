@@ -14,7 +14,7 @@ except ImportError:
 import logging
 import pandas as pd
 from toolz import concatv
-from zipline.utils.calendar_utils import get_calendar
+from zipline.utils.calendar_utils import get_calendar_for_bundle
 
 from zipline.data import bundles
 from zipline.data.benchmarks import get_benchmark_returns_from_file
@@ -97,7 +97,7 @@ def _run(
     )
 
     if trading_calendar is None:
-        trading_calendar = get_calendar("XNYS")
+        trading_calendar = get_calendar_for_bundle(bundle_data)
 
     # date parameter validation
     if trading_calendar.sessions_distance(start, end) < 1:

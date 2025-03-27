@@ -223,9 +223,13 @@ class BcolzMinuteBarMetadata:
                 minutes_per_day = US_EQUITIES_MINUTES_PER_DAY
 
             if version >= 2:
-                calendar = get_calendar(raw_data["calendar_name"])
                 start_session = pd.Timestamp(raw_data["start_session"])
                 end_session = pd.Timestamp(raw_data["end_session"])
+                calendar = get_calendar(
+                    raw_data["calendar_name"],
+                    start_session=start_session,
+                    end_session=end_session,
+                )
             else:
                 # No calendar info included in older versions, so
                 # default to NYSE.
