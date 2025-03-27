@@ -14,7 +14,6 @@ except ImportError:
 import logging
 import pandas as pd
 from toolz import concatv
-from zipline.utils.calendar_utils import get_calendar_for_bundle
 
 from zipline.data import bundles
 from zipline.data.benchmarks import get_benchmark_returns_from_file
@@ -97,7 +96,11 @@ def _run(
     )
 
     if trading_calendar is None:
-        trading_calendar = get_calendar_for_bundle(bundle_data)
+        trading_calendar = (
+            bundle_data.equity_daily_bar_reader.trading_calendar
+            if data_frequency == "daily"
+            else bundle_data.equity_minute_bar_reader.trading_calendar
+        )
 
     # date parameter validation
     if trading_calendar.sessions_distance(start, end) < 1:
