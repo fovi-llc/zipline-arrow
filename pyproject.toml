@@ -1,9 +1,9 @@
 [project]
 name = 'zipline-arrow'
-version = '3.2'
 description = 'A Pythonic backtester for trading algorithms'
 readme = 'README.md'
-dynamic = ["version"]
+# dynamic = ["version"]
+version = '3.2.0'
 
 authors = [
     { name = 'Quantopian Inc', email = 'pm@ml4trading.io' },
@@ -30,7 +30,8 @@ classifiers = [
 
 license = { file = "LICENSE" }
 
-requires-python = '>=3.10'
+# Gotta set Python under 4.0 because exchange-calendars requires ~=3.10.
+requires-python = '>=3.10, <4'
 dependencies = [
     "numpy>=1.23.5; python_version<'3.12'",
     "numpy>=1.26.0; python_version>='3.12'",
@@ -61,7 +62,7 @@ dependencies = [
     #    'ta-lib >=0.4.09',
     'tables >=3.4.3',
     'toolz >=0.8.2',
-    'exchange-calendars >=4.2.4'
+    'exchange-calendars >=4.10'
 ]
 
 [project.urls]
@@ -69,8 +70,10 @@ homepage = 'https://github.com/fovi-llc/zipline-arrow'
 repository = 'https://github.com/fovi-llc/zipline-arrow'
 documentation = 'https://wiki3.ai/zipline-arrow/'
 
+
 [build-system]
 requires = [
+    "poetry_core>=2.1.0",
     'setuptools>=42.0.0',
     "setuptools_scm[toml]>=6.2",
     'wheel>=0.36.0',
@@ -81,6 +84,9 @@ requires = [
     #    'oldest-supported-numpy; python_version>="3.9"',
 ]
 build-backend = 'setuptools.build_meta'
+
+[tool.poetry]
+package-mode = false
 
 [project.optional-dependencies]
 test = [
