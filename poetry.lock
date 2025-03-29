@@ -3844,11 +3844,11 @@ files = [
 ]
 
 [extras]
-dev = ["Cython", "black", "flake8", "pre-commit", "ruff"]
-docs = ["Cython", "Sphinx", "m2r2", "numpydoc", "pydata-sphinx-theme", "sphinx-autobuild", "sphinx_markdown_tables"]
+dev = ["black", "cython", "flake8", "pre-commit", "ruff"]
+docs = ["cython", "m2r2", "numpydoc", "pydata-sphinx-theme", "sphinx", "sphinx-autobuild", "sphinx_markdown_tables"]
 test = ["click", "coverage", "flake8", "matplotlib", "pandas-datareader", "parameterized", "pytest", "pytest-cov", "pytest-rerunfailures", "pytest-timeout", "pytest-xdist", "responses", "testfixtures", "tox"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.10, <4"
-content-hash = "cf7087222394299ba87886b6c0852b71ae6ed8721287930d8733093fb04d12ba"
+python-versions = ">=3.10,<4"
+content-hash = "4497cd7ba421194b45eaa169b42536fc5469d2b85f2fc6f0949db7595006eada"
