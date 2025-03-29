@@ -5,7 +5,7 @@ readme = 'README.md'
 dynamic = ["version"]
 
 authors = [
-    { name = 'Quantopian Inc', email = 'pm@ml4trading.io' }
+    { name = 'Quantopian Inc', email = 'pm@ml4trading.io' },
     { name = 'Stefan Jansen', email = 'pm@ml4trading.io' }
 ]
 maintainers = [
