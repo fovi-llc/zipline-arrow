@@ -1,5 +1,6 @@
 [project]
 name = 'zipline-arrow'
+version = '3.2'
 description = 'A Pythonic backtester for trading algorithms'
 readme = 'README.md'
 dynamic = ["version"]
