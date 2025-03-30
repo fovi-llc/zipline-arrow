@@ -95,12 +95,23 @@ def _run(
         bundle_timestamp,
     )
 
-    if trading_calendar is None:
-        trading_calendar = (
-            bundle_data.equity_daily_bar_reader.trading_calendar
-            if data_frequency == "daily"
-            else bundle_data.equity_minute_bar_reader.trading_calendar
-        )
+    # Per the (temporary?) change to `zipline/data/dispatch_bar_reader.py` we're
+    # only going to require that calendar's use the same name.  Probably not really
+    # covering all the originally intended cases, but is good enough for mine for now.
+    # TODO: Is this the way to deal with this?
+    bundle_trading_calendar = (
+        bundle_data.equity_daily_bar_reader.trading_calendar
+        if data_frequency == "daily"
+        else bundle_data.equity_minute_bar_reader.trading_calendar
+    )
+
+    if trading_calendar is not None:
+        if bundle_trading_calendar.name != trading_calendar.name:
+            raise _RunAlgoError(
+                f"The given trading calendar {trading_calendar.name} does not match the bundle's {bundle_trading_calendar.name}"
+            )
+
+    trading_calendar = bundle_trading_calendar
 
     # date parameter validation
     if trading_calendar.sessions_distance(start, end) < 1:
