@@ -29,9 +29,6 @@ classifiers = [
     "Topic :: System :: Distributed Computing"
 ]
 
-include = ["src/zipline/**/*.{pyx,pxd,pxi,pyi}"]
-
-
 dependencies = [
     "numpy >=1.23.5; python_version < '3.12'",
     "numpy >=1.26.0; python_version >= '3.12'",
@@ -108,11 +105,17 @@ repository = "https://github.com/fovi-llc/zipline-arrow"
 documentation = "https://wiki3.ai/zipline-arrow/"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=42", "wheel", "cython", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[tool.poetry-dynamic-versioning]
+enable = true
 
 [tool.poetry]
 packages = [{ include = "zipline", from = "src" }]
+
+
+
 
 [tool.black]
 line-length = 88
@@ -137,7 +140,11 @@ select = ["NPY201"]
 pythonpath = ['.']
 testpaths = 'tests'
 addopts = '-v'
+# TODO: Update code to remove deprecation warnings.
 filterwarnings = 'ignore::DeprecationWarning:pandas_datareader.compat'
+# Prevent pytest from detaching while debugging
+# https://github.com/microsoft/debugpy/issues/1347
+# timeout = 0
 
 [tool.cibuildwheel]
 test-extras = "test"
