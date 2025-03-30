@@ -1,5 +1,4 @@
-"""Tests for common behaviors shared by all ComputableTerms.
-"""
+"""Tests for common behaviors shared by all ComputableTerms."""
 
 import numpy as np
 
