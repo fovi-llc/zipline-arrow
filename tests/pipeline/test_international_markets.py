@@ -26,8 +26,10 @@ from zipline.testing.core import parameter_space, random_tick_prices
 import zipline.testing.fixtures as zf
 import pytest
 import re
+import os
 
-from unittest import skip
+
+ON_GITHUB_ACTIONS = os.getenv("GITHUB_ACTIONS") == "true"
 
 
 def T(s):
@@ -237,8 +239,10 @@ class InternationalEquityTestCase(
     def make_exchanges_info(cls, equities, futures, root_symbols):
         return cls.EXCHANGE_INFO
 
-    @skip("Fails all_assets = self.assets_by_calendar[calendar]")
     @parameter_space(domain=[CA_EQUITIES, US_EQUITIES, GB_EQUITIES])
+    @pytest.mark.skipif(
+        ON_GITHUB_ACTIONS, reason="Fails all_assets = self.assets_by_calendar[calendar] randomly fails on Github Actions."
+    )
     def test_generic_pipeline_with_explicit_domain(self, domain):
         calendar = domain.calendar
         pipe = Pipeline(
