@@ -48,7 +48,7 @@ jobs:
           CIBW_ARCHS_MACOS: x86_64 arm64
           CIBW_BUILD: "${{ matrix.python }}-*"
           CIBW_SKIP: "*-musllinux_*"
-          CIBW_ENVIRONMENT_MACOS: MACOSX_DEPLOYMENT_TARGET=10.15
+          CIBW_ENVIRONMENT_MACOS: MACOSX_DEPLOYMENT_TARGET=11
 
       - name: Install MSVC amd64
         uses: ilammy/msvc-dev-cmd@v1
