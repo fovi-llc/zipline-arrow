@@ -1,6 +1,6 @@
 [project]
 name = "zipline-arrow"
-version = "3.2.0"
+version = "3.2.1"
 description = "A Pythonic backtester for trading algorithms"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -28,6 +28,9 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Information Analysis",
     "Topic :: System :: Distributed Computing"
 ]
+
+include = ["src/zipline/**/*.{pyx,pxd,pxi,pyi}"]
+
 
 dependencies = [
     "numpy >=1.23.5; python_version < '3.12'",
