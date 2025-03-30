@@ -94,6 +94,8 @@ jobs:
   upload_pypi:
     needs: [ build_wheels, build_sdist ]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
