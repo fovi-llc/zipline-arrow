@@ -468,6 +468,8 @@ def _make_bundle_core():
                     )
                 )
                 with working_file(version_path) as wf:
+                    # TODO: Use `shutil.move` instead of `shutil.copy2` to
+                    # avoid copying if destination is on the same filesystem.
                     shutil.copy2(assets_db_path, wf.path)
                     downgrade(wf.path, version)
 

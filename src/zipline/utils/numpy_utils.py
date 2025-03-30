@@ -1,4 +1,4 @@
-""" Utilities for working with numpy arrays."""
+"""Utilities for working with numpy arrays."""
 
 from collections import OrderedDict
 from datetime import datetime

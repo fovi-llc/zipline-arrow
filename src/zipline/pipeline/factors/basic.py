@@ -1,5 +1,4 @@
-"""Simple common factors.
-"""
+"""Simple common factors."""
 
 from numbers import Number
 from numpy import (

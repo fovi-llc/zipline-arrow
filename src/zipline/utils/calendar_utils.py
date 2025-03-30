@@ -36,7 +36,9 @@ def get_calendar(*args, **kwargs):
     kwargs.pop("end_session", None)
 
     if args[0] in ["us_futures", "CMES", "XNYS", "NYSE"]:
-        calendar = ec_get_calendar(*args, side="right", start=pd.Timestamp("1990-01-01"))
+        calendar = ec_get_calendar(
+            *args, side="right", start=pd.Timestamp("1990-01-01")
+        )
     else:
         calendar = ec_get_calendar(*args, side="right")
 
