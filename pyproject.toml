@@ -65,7 +65,7 @@ test = [
     "tox",
     "pytest >=8",
     "pytest-cov >=3.0.0",
-    "pytest-xdist >=5",
+    "pytest-xdist >=3.6",
     "pytest-timeout >=2",
     "parameterized >=0.8",
     "testfixtures >=4.1.2",
