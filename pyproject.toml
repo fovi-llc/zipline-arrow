@@ -1,6 +1,6 @@
 [project]
 name = "zipline-arrow"
-version = "3.2.2"
+version = "3.2.3"
 description = "A Pythonic backtester for trading algorithms"
 readme = "README.md"
 license = {text = "Apache-2.0"}
