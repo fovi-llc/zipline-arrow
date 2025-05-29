@@ -244,7 +244,8 @@ class InternationalEquityTestCase(
 
     @parameter_space(domain=[CA_EQUITIES, US_EQUITIES, GB_EQUITIES])
     @pytest.mark.skipif(
-        ON_GITHUB_ACTIONS, reason="Fails all_assets = self.assets_by_calendar[calendar] randomly fails on Github Actions."
+        ON_GITHUB_ACTIONS,
+        reason="Fails all_assets = self.assets_by_calendar[calendar] randomly fails on Github Actions.",
     )
     def test_generic_pipeline_with_explicit_domain(self, domain):
         calendar = domain.calendar
