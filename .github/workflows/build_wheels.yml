@@ -96,7 +96,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
-    steps:
+    environment:
+      name: pypi
+      url: https://pypi.org/p/zipline-arrow
+      steps:
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
         with:
