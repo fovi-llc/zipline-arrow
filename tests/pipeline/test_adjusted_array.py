@@ -25,7 +25,7 @@ from zipline.lib.adjustment import (
 )
 from zipline.lib.adjusted_array import AdjustedArray
 from zipline.lib.labelarray import LabelArray
-from zipline.testing import check_arrays
+from zipline.testing import check_allclose, check_arrays
 from zipline.testing.predicates import assert_equal
 from zipline.utils.compat import unicode
 from zipline.utils.numpy_utils import (
@@ -564,7 +564,7 @@ class TestAdjustedArray:
                 perspective_offset=perspective_offset,
             )
             for yielded, expected_yield in zip_longest(window_iter, expected):
-                check_arrays(yielded, expected_yield)
+                check_allclose(yielded, expected_yield)
 
     @pytest.mark.parametrize(
         "name, baseline, lookback, adjustments,\
