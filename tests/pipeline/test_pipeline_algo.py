@@ -22,7 +22,7 @@ from zipline.errors import (
     DuplicatePipelineName,
 )
 from zipline.finance.trading import SimulationParameters
-from zipline.lib.adjustment import MULTIPLY
+from zipline.lib.adjustment import AdjustmentKind
 from zipline.pipeline import Pipeline, CustomFactor
 from zipline.pipeline.factors import VWAP
 from zipline.pipeline.data import USEquityPricing
@@ -141,7 +141,7 @@ class ClosesAndVolumes(WithMakeAlgo, ZiplineTestCase):
                 {
                     "sid": cls.split_asset.sid,
                     "value": cls.split_ratio,
-                    "kind": MULTIPLY,
+                    "kind": AdjustmentKind.MULTIPLY,
                     "start_date": pd.NaT,
                     "end_date": cls.split_date,
                     "apply_date": cls.split_date,

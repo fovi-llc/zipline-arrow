@@ -11,9 +11,9 @@ class TestAdjustment:
     @pytest.mark.parametrize(
         "name, adj_type",
         [
-            ("add", adj.ADD),
-            ("multiply", adj.MULTIPLY),
-            ("overwrite", adj.OVERWRITE),
+            ("add", adj.AdjustmentKind.ADD),
+            ("multiply", adj.AdjustmentKind.MULTIPLY),
+            ("overwrite", adj.AdjustmentKind.OVERWRITE),
         ],
     )
     def test_make_float_adjustment(self, name, adj_type):
@@ -45,7 +45,7 @@ class TestAdjustment:
             2,
             3,
             4,
-            adjustment_kind=adj.OVERWRITE,
+            adjustment_kind=adj.AdjustmentKind.OVERWRITE,
             value=1,
         )
         expected = adj.Int64Overwrite(
@@ -64,7 +64,7 @@ class TestAdjustment:
             2,
             3,
             4,
-            adjustment_kind=adj.OVERWRITE,
+            adjustment_kind=adj.AdjustmentKind.OVERWRITE,
             value=overwrite_dt,
         )
         expected = adj.Datetime64Overwrite(
@@ -90,7 +90,7 @@ class TestAdjustment:
             2,
             3,
             4,
-            adjustment_kind=adj.OVERWRITE,
+            adjustment_kind=adj.AdjustmentKind.OVERWRITE,
             value=value,
         )
 
@@ -117,6 +117,6 @@ class TestAdjustment:
                 2,
                 3,
                 4,
-                adjustment_kind=adj.OVERWRITE,
+                adjustment_kind=adj.AdjustmentKind.OVERWRITE,
                 value=SomeClass(),
             )
