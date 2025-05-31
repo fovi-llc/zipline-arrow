@@ -2,7 +2,7 @@
 Tests for zipline.lib.adjustment
 """
 
-from zipline.lib import adjustment as adj
+import zipline.lib.adjustment as adj
 from zipline.utils.numpy_utils import make_datetime64ns
 import pytest
 
